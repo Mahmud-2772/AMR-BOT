@@ -1,33 +1,60 @@
 const { getTime, drive } = global.utils;
 
 module.exports = {
-	config: {
-		name: "leave",
-		version: "1.4",
-		author: "NTKhang",
-		category: "events"
-	},
+    config: {
+        name: "leave",
+        version: "1.4",
+        author: "NTKhang",
+        category: "events"
+    },
 
-	langs: {
-		vi: {
-			session1: "sáng",
-			session2: "trưa",
-			session3: "chiều",
-			session4: "tối",
-			leaveType1: "Thằng ngu đang nghỉ",
-			leaveType2: "Bị đẩy ngã",
-			defaultLeaveMessage: "{userName} {type}"
-		},
-		en: {
-			session1: "morning",
-			session2: "noon",
-			session3: "afternoon",
-			session4: "evening",
-			leaveType1: "বোকা ছেলে leave নিছে",
-			leaveType2: "ঘাড় ধাক্যা দেয়া হলো",
-			defaultLeaveMessage: "{userName} {type}"
-		}
-	},
+    langs: {
+        vi: {
+            session1: "sáng",
+            session2: "trưa",
+            session3: "chiều",
+            session4: "tối",
+            leaveType1: "Thằng ngu đang nghỉ",
+            leaveType2: "Bị đẩy ngã",
+            defaultLeaveMessage: "{userName} {type}"
+        },
+        en: {
+            session1: "morning",
+            session2: "noon",
+            session3: "afternoon",
+            session4: "evening",
+            leaveType1: "বোকা ছেলে leave নিছে", // Boka chele leave niche
+            leaveType2: "ঘাড় ধাক্যা দেয়া হলো",   // Ghar dhakya deya holo
+            defaultLeaveMessage: "{userName} {type}"
+        }
+    },
+
+    onLeave: async function ({ event, api, getLang }) {
+        try {
+            const userName = event.participantName || "Someone";
+            const time = getTime("HH"); // e.g., "09", "15", etc.
+            let session;
+
+            if (time < 11) session = getLang("session1");
+            else if (time < 14) session = getLang("session2");
+            else if (time < 18) session = getLang("session3");
+            else session = getLang("session4");
+
+            // Random leave type
+            const types = [getLang("leaveType1"), getLang("leaveType2")];
+            const type = types[Math.floor(Math.random() * types.length)];
+
+            const message = getLang("defaultLeaveMessage")
+                .replace("{userName}", userName)
+                .replace("{type}", type)
+                .replace("{session}", session);
+
+            await api.sendMessage(message, event.threadID);
+        } catch (err) {
+            console.error("Leave event error:", err);
+        }
+    }
+};
 
 	onStart: async ({ threadsData, message, event, api, usersData, getLang }) => {
 		if (event.logMessageType == "log:unsubscribe")
