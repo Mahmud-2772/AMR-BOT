@@ -2,37 +2,21 @@ const axios = require("axios");
 
 const mahmuds = 
   ["baby",
-   "mia khalifa",
+   "eden",
    "babu",
    "bbu",
-   "eden",
+   "jan",
    "bot",
-   "sexy",
-   "sunny leone",
-"kutta",
+   "জান",
+   "বেবি",
+   "hinata",
+   "miakhalifa",
+   "kutta",
 
   ]; 
 
   const baseApiUrl = async () => {
   const base = await axios.get("https://raw.githubusercontent.com/mahmudx7/exe/main/baseApiUrl.json");
-  return base.data.jan;
-};
-
-module.exports = {
-  config: {
-    name: "bot",
-    version: "1.7",
-    author: "MahMUD",
-    role: 0,
-    category: "ai",
-    guide: { 
-      en: "just type jan"
-    },
-  },
-
-  onStart: async function () {},
-
-  onReply: async functi.json");
   return base.data.jan;
 };
 
@@ -76,7 +60,7 @@ module.exports = {
       "আমাকে ডাকলে ,আমি কিন্তূ কিস করে দেবো😘 ",  
       "🐒🐒🐒",
       "bye",
-      "naw message daw m.me/mahmud.x07",
+      "naw message daw m.me/eden.here0",
       "mb ney bye",
       "meww",
       "গোলাপ ফুল এর জায়গায় আমি দিলাম তোমায় মেসেজ",
@@ -110,7 +94,7 @@ module.exports = {
         "আজব তো__😒",
         "আমাকে ডেকো না,আমি ব্যাস্ত আসি🙆🏻‍♀",
         "𝗕𝗯𝘆 বললে চাকরি থাকবে না",
-        "𝗕𝗯𝘆 𝗕𝗯𝘆 না করে আমার বস মানে, EDEN ,EDEN ও তো করতে পারো😑?",
+        "𝗕𝗯𝘆 𝗕𝗯𝘆 না করে আমার বস মানে, EDEN, EDEN ও তো করতে পারো😑?",
         "আমার সোনার বাংলা, তারপরে লাইন কি? 🙈",
         "🍺 এই নাও জুস খাও..!𝗕𝗯𝘆 বলতে বলতে হাপায় গেছো না 🥲",
         "হটাৎ আমাকে মনে পড়লো 🙄",
@@ -214,4 +198,4 @@ async function getBotResponse(message) {
     console.error("API Error:", error.message || error);
     return "error janu 🥲";
   }
-}
+  }
